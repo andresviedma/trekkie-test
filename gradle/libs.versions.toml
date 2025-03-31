@@ -3,6 +3,11 @@
 # Core
 kotlin = "2.0.21"
 kotlinx-coroutines = "1.8.1"
+
+# Bindings
+kotest = "5.9.1"
+
+# Publish
 publish = "2.0.0"
 dokka = "1.9.20"
 
@@ -10,6 +15,11 @@ dokka = "1.9.20"
 
 # Core
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines" }
+
+# Bindings
+kotest-bom = { group = "io.kotest", name = "kotest-bom", version.ref = "kotest" }
+kotest-junit5 = { group = "io.kotest", name = "kotest-runner-junit5" }
+kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core" }
 
 # Test
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

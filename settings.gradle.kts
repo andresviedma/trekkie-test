@@ -23,4 +23,7 @@ plugins {
 
 include(
     ":trekkie-test-core",
+
+    // Bindings
+    ":trekkie-kotest",
 )

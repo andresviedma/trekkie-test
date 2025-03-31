@@ -56,3 +56,29 @@ class LoginServiceTest : FeatureSpec({
 
 The framework can be used in suspendable and non-suspendable contexts,
 so it's compatible with coroutines.
+
+## Data-driven (parameterized) tests
+These are test methods that are going to be duplicated for a given combination
+of input values. The problem with this is that not all test frameworks allow having
+something like this easily.
+
+For the moment, only the `Kotest` binding allows these tests, by
+implementing the `Where` keyword.
+
+```kotlin
+Where(
+    row("zero", 0.0, 0.0),
+    row("one", 1.0, 1.0),
+    row("positive number", 3.0, 9.0),
+    row("negative number", -7.0, 49.0),
+    
+) { (case, input, expectedValue) ->
+    scenario("square of $case") {
+        When {
+            input.pow(2)
+        } then { 
+            it shouldBe expectedValue
+        }
+    }
+}
+```
