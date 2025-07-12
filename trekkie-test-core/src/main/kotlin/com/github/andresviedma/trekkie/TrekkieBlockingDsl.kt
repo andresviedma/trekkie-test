@@ -2,12 +2,16 @@
 
 package com.github.andresviedma.trekkie
 
+import kotlinx.coroutines.CoroutineScope
 import kotlin.reflect.KClass
 import kotlin.reflect.cast
 
 /* GIVEN / WITH */
-inline fun <reified T> Given(description: String = "", givenCode: () -> T) = BlockingGiven1(givenCode())
-inline fun <reified T> given(description: String = "", givenCode: () -> T) = BlockingGiven1(givenCode())
+inline fun <reified T> Given(givenCode: () -> T) = BlockingGiven1(givenCode())
+inline fun <reified C, T> Given(context: C, givenCode: C.() -> T) = BlockingGiven1(context.givenCode())
+inline fun <reified T> given(givenCode: () -> T) = BlockingGiven1(givenCode())
+inline fun <reified C, T> given(context: C, givenCode: C.() -> T) = BlockingGiven1(context.givenCode())
+
 inline fun <reified T> With(description: String = "", givenCode: () -> T) = BlockingGiven1(givenCode())
 inline fun <reified T> with(description: String = "", givenCode: () -> T) = BlockingGiven1(givenCode())
 
