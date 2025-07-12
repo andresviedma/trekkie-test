@@ -11,9 +11,3 @@ inline fun <T> Where(vararg values: T, block: (T) -> Unit) {
 
 inline fun <T> where(vararg values: T, block: (T) -> Unit) =
     Where(*values) { block(it) }
-
-fun x() {
-    When {
-
-    }
-}

@@ -75,7 +75,7 @@ class TrekkieKotestTest : FeatureSpec({
             row("a negative number", -5, 25),
 
         ) { (caseName, input, expectedResult) ->
-           scenario("Square of $caseName") {
+           scenario("$caseName squared") {
                When {
                    input * input
                } then {

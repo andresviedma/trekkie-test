@@ -7,10 +7,6 @@ kotlinx-coroutines = "1.8.1"
 # Bindings
 kotest = "5.9.1"
 
-# Publish
-publish = "2.0.0"
-dokka = "1.9.20"
-
 [libraries]
 
 # Core
@@ -28,7 +24,8 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 
 [plugins]
 
-# Tools
-dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-nexusPublish = { id = "io.github.gradle-nexus.publish-plugin", version.ref = "publish" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+# Publish
+publishOnCentral = { id = "org.danilopianini.publish-on-central", version = "9.0.7" }
+dokka = { id = "org.jetbrains.dokka", version = "2.0.0" }

@@ -1,6 +1,5 @@
 plugins {
-    alias(libs.plugins.jvm)
-    alias(libs.plugins.dokka)
+    alias(libs.plugins.kotlin.jvm)
 }
 
 kotlin {
@@ -12,4 +11,8 @@ dependencies {
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.kotlinx.coroutines.test)
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }

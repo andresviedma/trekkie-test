@@ -1,7 +1,6 @@
 package com.github.andresviedma.trekkie
 
 import kotlinx.coroutines.test.runTest
-import org.junit.ComparisonFailure
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -63,7 +62,7 @@ class TrekkieBlockingDslTest {
         }
 
         assertTrue(result.isFailure)
-        assertEquals(ComparisonFailure::class, result.exceptionOrNull()!!::class)
+        assertEquals("AssertionFailedError", result.exceptionOrNull()!!::class.simpleName)
     }
 
     @Test
@@ -79,7 +78,7 @@ class TrekkieBlockingDslTest {
         }
 
         assertTrue(result.isFailure)
-        assertEquals(ComparisonFailure::class, result.exceptionOrNull()!!::class)
+        assertEquals("AssertionFailedError", result.exceptionOrNull()!!::class.simpleName)
     }
 
     @Test
@@ -135,7 +134,7 @@ class TrekkieBlockingDslTest {
         }
 
         assertTrue(result.isFailure)
-        assertEquals(ComparisonFailure::class, result.exceptionOrNull()!!::class)
+        assertEquals("AssertionFailedError", result.exceptionOrNull()!!::class.simpleName)
     }
 
     @Test

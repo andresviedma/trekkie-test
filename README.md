@@ -73,7 +73,7 @@ Where(
     row("negative number", -7.0, 49.0),
     
 ) { (case, input, expectedValue) ->
-    scenario("square of $case") {
+    scenario("$case squared") {
         When {
             input.pow(2)
         } then { 
