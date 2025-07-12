@@ -1,4 +1,4 @@
-package com.github.andresviedma.trekkie
+package io.github.andresviedma.trekkie
 
 data class Tuple2 <T1, T2>(val v1: T1, val v2: T2)
 data class Tuple3 <T1, T2, T3>(val v1: T1, val v2: T2, val v3: T3)

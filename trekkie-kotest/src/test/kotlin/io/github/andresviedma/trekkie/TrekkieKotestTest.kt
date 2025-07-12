@@ -1,4 +1,4 @@
-package com.github.andresviedma.trekkie
+package io.github.andresviedma.trekkie
 
 import io.kotest.assertions.AssertionFailedError
 import io.kotest.core.spec.style.FeatureSpec

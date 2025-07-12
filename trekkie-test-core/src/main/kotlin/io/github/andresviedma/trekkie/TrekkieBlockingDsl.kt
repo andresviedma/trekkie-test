@@ -1,6 +1,6 @@
 @file:Suppress("unused", "unused_parameter", "nothing_to_inline")
 
-package com.github.andresviedma.trekkie
+package io.github.andresviedma.trekkie
 
 import kotlinx.coroutines.CoroutineScope
 import kotlin.reflect.KClass

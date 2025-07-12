@@ -1,6 +1,6 @@
 @file:Suppress("unused", "unused_parameter", "nothing_to_inline")
 
-package com.github.andresviedma.trekkie
+package io.github.andresviedma.trekkie
 
 import kotlinx.coroutines.CoroutineScope
 import kotlin.reflect.KClass
@@ -105,7 +105,7 @@ inline infix fun <T> WhenBlock<T>.then(thenCode: (T) -> Unit): ThenBlock<T> {
     return ThenBlock(value)
 }
 
-inline infix fun <T, reified E : Throwable>WhenBlock<T>.thenExceptionThrown(thenCode: (E) -> Unit): ThenBlock<E> =
+inline infix fun <T, reified E : Throwable> WhenBlock<T>.thenExceptionThrown(thenCode: (E) -> Unit): ThenBlock<E> =
     thenExceptionThrown(E::class, thenCode)
 
 inline infix fun <T, E : Throwable> WhenBlock<T>.thenExceptionThrown(clazz: KClass<E>): ThenBlock<E> =

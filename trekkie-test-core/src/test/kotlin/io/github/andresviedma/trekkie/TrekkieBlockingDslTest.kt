@@ -1,4 +1,4 @@
-package com.github.andresviedma.trekkie
+package io.github.andresviedma.trekkie
 
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test

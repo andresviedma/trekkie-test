@@ -1,4 +1,4 @@
-package com.github.andresviedma.trekkie
+package io.github.andresviedma.trekkie
 
 @Suppress("ktlint:standard:function-naming")
 inline fun <T> Where(vararg values: T, block: (T) -> Unit) {
