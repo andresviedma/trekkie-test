@@ -16,13 +16,13 @@ class TrekkieKotestTest : FeatureSpec({
 
             // Test
             Given("a given condition") {
-                suspend { givenChecks[0] = true }()
+                suspendable { givenChecks[0] = true }
             }.and("other condition") {
                 givenChecks[1] = true
             } and {
                 givenChecks[2] = true
             } and {
-                suspend { givenChecks[3] = true }()
+                suspendable { givenChecks[3] = true }
             } and {
                 givenChecks[4] = true
             } and {
@@ -30,17 +30,17 @@ class TrekkieKotestTest : FeatureSpec({
             }
 
             With("a value") {
-                suspend { 1 }()
+                suspendable { 1 }
             }.and("another") {
                 "other"
             }.and("more") {
-                suspend { 3 }()
+                suspendable { 3 }
             }.When("something is run") { number, string, number2 ->
-                suspend { "OK-${number + 1}-${string.length}-$number2" }()
+                suspendable { "OK-${number + 1}-${string.length}-$number2" }
             }.then {
-                suspend { result = it }()
+                suspendable { result = it }
             }.and("more checks") {
-                suspend { and1Check = true }()
+                suspendable { and1Check = true }
             } and {
                 and2Check = true
             }
@@ -77,7 +77,7 @@ class TrekkieKotestTest : FeatureSpec({
         ) { (caseName, input, expectedResult) ->
            scenario("$caseName squared") {
                When {
-                   input * input
+                   suspendable { input * input }
                } then {
                    it shouldBe expectedResult
                }
@@ -85,3 +85,5 @@ class TrekkieKotestTest : FeatureSpec({
         }
     }
 })
+
+private suspend inline fun <reified T> suspendable(block: () -> T) = block()

@@ -79,9 +79,9 @@ suspend inline fun <T1, T2, T3, T4, T5, T6, R> Given6<T1, T2, T3, T4, T5, T6>.Wh
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4, given5) }
 
 /* Root WHEN / EXPECT */
-suspend inline fun <R> CoroutineScope.When(description: String = "", crossinline whenCode: () -> R): WhenBlock<R> =
+suspend inline fun <R> CoroutineScope.When(description: String = "", crossinline whenCode: suspend () -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode() }
-suspend inline fun <R> CoroutineScope.`when`(description: String = "", crossinline whenCode: () -> R): WhenBlock<R> =
+suspend inline fun <R> CoroutineScope.`when`(description: String = "", crossinline whenCode: suspend () -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode() }
 
 suspend fun <R> CoroutineScope.Expect(description: String = "", whenCode: suspend () -> R): ThenBlock<R> =
