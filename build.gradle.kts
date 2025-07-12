@@ -2,6 +2,7 @@
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.publishOnCentral)
+    alias(libs.plugins.dokka)
     `java-library`
 }
 
@@ -22,6 +23,7 @@ allprojects {
     with(rootProject.libs.plugins) {
         apply(plugin = kotlin.jvm.id)
         apply(plugin = publishOnCentral.id)
+        apply(plugin = dokka.id)
     }
 
     repositories {

@@ -67,7 +67,7 @@ class TrekkieKotestTest : FeatureSpec({
         }
     }
 
-    feature("Tests using ehere") {
+    feature("Tests using Where") {
         Where(
             row("zero", 0, 0),
             row("1", 1, 1),

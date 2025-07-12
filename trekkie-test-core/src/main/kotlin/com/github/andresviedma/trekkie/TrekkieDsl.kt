@@ -7,8 +7,11 @@ import kotlin.reflect.KClass
 import kotlin.reflect.cast
 
 /* GIVEN / WITH */
-inline fun <reified T> CoroutineScope.Given(description: String = "", givenCode: () -> T) = Given1(givenCode())
-inline fun <reified T> CoroutineScope.given(description: String = "", givenCode: () -> T) = Given1(givenCode())
+inline fun <reified T> CoroutineScope.Given(givenCode: () -> T) = Given1(givenCode())
+inline fun <reified C, T> CoroutineScope.Given(context: C, givenCode: C.() -> T) = Given1(context.givenCode())
+inline fun <reified T> CoroutineScope.given(givenCode: () -> T) = Given1(givenCode())
+inline fun <reified C, T> CoroutineScope.given(context: C, givenCode: C.() -> T) = Given1(context.givenCode())
+
 inline fun <reified T> CoroutineScope.With(description: String = "", givenCode: () -> T) = Given1(givenCode())
 inline fun <reified T> CoroutineScope.with(description: String = "", givenCode: () -> T) = Given1(givenCode())
 
