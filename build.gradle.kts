@@ -30,6 +30,10 @@ allprojects {
         mavenCentral()
     }
 
+    kotlin {
+        jvmToolchain(1_8)
+    }
+
     publishOnCentral {
         val repoOwner = "andresviedma"
         projectLongName.set("Trekkie test")
