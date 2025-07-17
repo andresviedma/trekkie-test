@@ -1,4 +1,4 @@
-package com.bumble.katra
+package io.github.andresviedma.trekkie
 
 import io.mockk.MockKMatcherScope
 import io.mockk.MockKStubScope
