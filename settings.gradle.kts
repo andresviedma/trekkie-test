@@ -24,6 +24,9 @@ plugins {
 include(
     ":trekkie-test-core",
 
-    // Bindings
+    // Frameworks
     ":trekkie-kotest",
+
+    // Mocks
+    ":trekkie-mockk",
 )

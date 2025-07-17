@@ -17,6 +17,8 @@ kotest-bom = { group = "io.kotest", name = "kotest-bom", version.ref = "kotest" 
 kotest-junit5 = { group = "io.kotest", name = "kotest-runner-junit5" }
 kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core" }
 
+mockk = { module = "io.mockk:mockk", version = "1.14.5" }
+
 # Test
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
