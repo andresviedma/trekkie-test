@@ -1,13 +1,15 @@
 package io.github.andresviedma.trekkie
 
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
+@Suppress("ConstantConditionIf")
 class TrekkieDslTest {
     @Test
-    fun `Successful test with multiple givens and withs`() = runTest {
+    fun `Successful test with multiple givens and withs - with-when with comments`() = runTest {
         val givenChecks = (0..5).map { false }.toMutableList()
         var result: String? = null
         var and1Check = false
@@ -35,6 +37,7 @@ class TrekkieDslTest {
         }.and("more") {
             suspend { 3 }()
         }.When("something is run") { number, string, number2 ->
+            delay(10)
             suspend { "OK-${number + 1}-${string.length}-$number2" }()
         }.then {
             suspend { result = it }()
@@ -49,6 +52,60 @@ class TrekkieDslTest {
         assertTrue(givenChecks.all { it })
         assertTrue(and1Check)
         assertTrue(and2Check)
+    }
+
+    @Test
+    fun `Successful test with multiple givens and withs - with-when with no comments`() = runTest {
+        var result: String? = null
+        var and1Check = false
+
+        With {
+            suspend { 1 }()
+        } and {
+            suspend { 3 }()
+        } When { number, number2 ->
+            suspend { "OK-${number + 1}-$number2" }()
+        } then {
+            suspend { result = it }()
+        } and {
+            suspend { and1Check = true }()
+        }
+
+        // Test validations
+        assertEquals(result, "OK-2-3")
+        assertTrue(and1Check)
+    }
+
+    @Test
+    fun `Successful test with multiple givens and withs - when with no comments`() = runTest {
+        var result: Int? = null
+
+        When {
+            suspend { 1 }()
+        } then {
+            suspend { result = it }()
+        }
+
+        // Test validations
+        assertEquals(result, 1)
+    }
+
+    @Test
+    fun `Successful test with multiple givens and withs - when with comments`() = runTest {
+        var result: Int? = null
+        var and1Check = false
+
+        When("with description") {
+            suspend { 1 }()
+        }.then("with description") {
+            suspend { result = it }()
+        }.and("more") {
+            suspend { and1Check = true }()
+        }
+
+        // Test validations
+        assertEquals(result, 1)
+        assertTrue(and1Check)
     }
 
     @Test

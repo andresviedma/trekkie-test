@@ -20,7 +20,9 @@ data class Given1 <T1> (val given1: T1)
 inline infix fun <reified T> Given1<T>.and(givenCode: () -> T) = Given2(given1, givenCode())
 inline fun <T1, reified T> Given1<T1>.and(description: String, givenCode: () -> T) = Given2(given1, givenCode())
 
-suspend fun <T1, R> Given1<T1>.When(description: String = "", whenCode: (T1) -> R): WhenBlock<R> =
+suspend inline infix fun <T1, R> Given1<T1>.When(crossinline whenCode: suspend (T1) -> R): WhenBlock<R> =
+    WhenBlock.runWhen { whenCode(given1) }
+suspend inline fun <T1, R> Given1<T1>.When(description: String, crossinline whenCode: suspend (T1) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1) }
 
 data class Given2 <T1, T2> (val given1: T1, val given2: T2)
@@ -29,9 +31,9 @@ inline infix fun <T1, T2, reified T> Given2<T1, T2>.and(givenCode: () -> T) =
 inline fun <T1, T2, reified T> Given2<T1, T2>.and(description: String, givenCode: () -> T) =
     Given3(given1, given2, givenCode())
 
-suspend inline infix fun <T1, T2, R> Given2<T1, T2>.When(crossinline whenCode: (T1, T2) -> R): WhenBlock<R> =
+suspend inline infix fun <T1, T2, R> Given2<T1, T2>.When(crossinline whenCode: suspend (T1, T2) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2) }
-suspend inline fun <T1, T2, R> Given2<T1, T2>.When(description: String, crossinline whenCode: (T1, T2) -> R): WhenBlock<R> =
+suspend inline fun <T1, T2, R> Given2<T1, T2>.When(description: String, crossinline whenCode: suspend (T1, T2) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2) }
 
 data class Given3 <T1, T2, T3> (val given1: T1, val given2: T2, val given3: T3)
@@ -53,9 +55,9 @@ inline infix fun <T1, T2, T3, T4, reified T> Given4<T1, T2, T3, T4>.and(givenCod
 inline fun <T1, T2, T3, T4, reified T> Given4<T1, T2, T3, T4>.and(description: String, givenCode: () -> T) =
     Given5(given1, given2, given3, given4, givenCode())
 
-suspend inline infix fun <T1, T2, T3, T4, R> Given4<T1, T2, T3, T4>.When(crossinline whenCode: (T1, T2, T3, T4) -> R): WhenBlock<R> =
+suspend inline infix fun <T1, T2, T3, T4, R> Given4<T1, T2, T3, T4>.When(crossinline whenCode: suspend (T1, T2, T3, T4) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4) }
-suspend inline fun <T1, T2, T3, T4, R> Given4<T1, T2, T3, T4>.When(description: String, crossinline whenCode: (T1, T2, T3, T4) -> R): WhenBlock<R> =
+suspend inline fun <T1, T2, T3, T4, R> Given4<T1, T2, T3, T4>.When(description: String, crossinline whenCode: suspend (T1, T2, T3, T4) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4) }
 
 data class Given5 <T1, T2, T3, T4, T5> (val given1: T1, val given2: T2, val given3: T3, val given4: T4, val given5: T5)
@@ -65,17 +67,17 @@ inline infix fun <T1, T2, T3, T4, T5, reified T> Given5<T1, T2, T3, T4, T5>.and(
 inline fun <T1, T2, T3, T4, T5, reified T> Given5<T1, T2, T3, T4, T5>.and(description: String, givenCode: () -> T) =
     Given6(given1, given2, given3, given4, given5, givenCode())
 
-suspend inline infix fun <T1, T2, T3, T4, T5, R> Given5<T1, T2, T3, T4, T5>.When(crossinline whenCode: (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
+suspend inline infix fun <T1, T2, T3, T4, T5, R> Given5<T1, T2, T3, T4, T5>.When(crossinline whenCode: suspend (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4, given5) }
-suspend inline fun <T1, T2, T3, T4, T5, R> Given5<T1, T2, T3, T4, T5>.When(description: String, crossinline whenCode: (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
+suspend inline fun <T1, T2, T3, T4, T5, R> Given5<T1, T2, T3, T4, T5>.When(description: String, crossinline whenCode: suspend (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4, given5) }
 
 
 data class Given6 <T1, T2, T3, T4, T5, T6> (val given1: T1, val given2: T2, val given3: T3, val given4: T4, val given5: T5, val given6: T6)
 
-suspend inline infix fun <T1, T2, T3, T4, T5, T6, R> Given6<T1, T2, T3, T4, T5, T6>.When(crossinline whenCode: (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
+suspend inline infix fun <T1, T2, T3, T4, T5, T6, R> Given6<T1, T2, T3, T4, T5, T6>.When(crossinline whenCode: suspend (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4, given5) }
-suspend inline fun <T1, T2, T3, T4, T5, T6, R> Given6<T1, T2, T3, T4, T5, T6>.When(description: String, crossinline whenCode: (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
+suspend inline fun <T1, T2, T3, T4, T5, T6, R> Given6<T1, T2, T3, T4, T5, T6>.When(description: String, crossinline whenCode: suspend (T1, T2, T3, T4, T5) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(given1, given2, given3, given4, given5) }
 
 /* Root WHEN / EXPECT */
@@ -100,6 +102,11 @@ class WhenBlock<T>(val result: Result<T>) {
 }
 
 inline infix fun <T> WhenBlock<T>.then(thenCode: (T) -> Unit): ThenBlock<T> {
+    val value = result.getOrThrow()
+    thenCode(value)
+    return ThenBlock(value)
+}
+inline fun <T> WhenBlock<T>.then(description: String, thenCode: (T) -> Unit): ThenBlock<T> {
     val value = result.getOrThrow()
     thenCode(value)
     return ThenBlock(value)
@@ -139,11 +146,13 @@ inline fun <T> ThenBlock<T>.and(description: String, thenCode: (T) -> Unit): The
     return this
 }
 
-suspend inline infix fun <T, R> ThenBlock<T>.When(crossinline whenCode: (T) -> R): WhenBlock<R> =
+suspend inline infix fun <T, R> ThenBlock<T>.andWhen(crossinline whenCode: suspend (T) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(result) }
-suspend inline infix fun <T, R> ThenBlock<T>.`when`(crossinline whenCode: (T) -> R): WhenBlock<R> =
+suspend inline infix fun <T, R> ThenBlock<T>.When(crossinline whenCode: suspend (T) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(result) }
-suspend inline fun <T, R> ThenBlock<T>.When(description: String, crossinline whenCode: (T) -> R): WhenBlock<R> =
+suspend inline infix fun <T, R> ThenBlock<T>.`when`(crossinline whenCode: suspend (T) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(result) }
-suspend inline fun <T, R> ThenBlock<T>.`when`(description: String, crossinline whenCode: (T) -> R): WhenBlock<R> =
+suspend inline fun <T, R> ThenBlock<T>.When(description: String, crossinline whenCode: suspend (T) -> R): WhenBlock<R> =
+    WhenBlock.runWhen { whenCode(result) }
+suspend inline fun <T, R> ThenBlock<T>.`when`(description: String, crossinline whenCode: suspend (T) -> R): WhenBlock<R> =
     WhenBlock.runWhen { whenCode(result) }
