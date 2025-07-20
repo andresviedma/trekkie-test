@@ -10,7 +10,7 @@ repositories {
     mavenCentral()
 }
 
-group = "io.github.andresviedma"
+group = "io.github.andresviedma.trekkie"
 val trekkieVersion: String by project
 version = trekkieVersion
 
