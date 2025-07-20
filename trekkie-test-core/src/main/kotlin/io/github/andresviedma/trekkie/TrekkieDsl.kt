@@ -1,4 +1,4 @@
-@file:Suppress("unused", "unused_parameter", "nothing_to_inline")
+@file:Suppress("unused", "unused_parameter", "nothing_to_inline", "UnusedReceiverParameter", "FunctionName")
 
 package io.github.andresviedma.trekkie
 

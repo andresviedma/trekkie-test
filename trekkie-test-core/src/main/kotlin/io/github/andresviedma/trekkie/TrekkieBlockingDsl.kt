@@ -1,8 +1,7 @@
-@file:Suppress("unused", "unused_parameter", "nothing_to_inline")
+@file:Suppress("unused", "unused_parameter", "nothing_to_inline", "FunctionName")
 
 package io.github.andresviedma.trekkie
 
-import kotlinx.coroutines.CoroutineScope
 import kotlin.reflect.KClass
 import kotlin.reflect.cast
 
@@ -139,6 +138,8 @@ data class BlockingThenBlock <T> (val result: T) {
         return this
     }
 
+    inline infix fun <R> andWhen(crossinline whenCode: (T) -> R): BlockingWhenBlock<R> =
+        BlockingWhenBlock.runWhen { whenCode(result) }
     inline infix fun <R> When(crossinline whenCode: (T) -> R): BlockingWhenBlock<R> =
         BlockingWhenBlock.runWhen { whenCode(result) }
     inline infix fun <R> `when`(crossinline whenCode: (T) -> R): BlockingWhenBlock<R> =

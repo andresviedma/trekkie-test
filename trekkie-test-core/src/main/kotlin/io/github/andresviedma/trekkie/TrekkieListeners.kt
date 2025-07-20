@@ -2,6 +2,7 @@ package io.github.andresviedma.trekkie
 
 import kotlinx.coroutines.runBlocking
 
+@Suppress("MemberVisibilityCanBePrivate")
 object TrekkieListeners {
     val beforeVerificationListeners = mutableListOf<suspend () -> Unit>()
 
